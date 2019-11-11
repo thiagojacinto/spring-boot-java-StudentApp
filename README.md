@@ -1,6 +1,6 @@
 # Spring Boot + Java: StudentApp
 
-![GitHub contributors](https://img.shields.io/github/contributors/thiagojacinto/spring-boot-java-StudentApp/README-template.md)
+![GitHub contributors](https://img.shields.io/github/contributors/thiagojacinto/spring-boot-java-StudentApp)
 ![Twitter Follow](https://img.shields.io/twitter/follow/higuetari?style=social)
 
 Little project of a simplified Student Management System to learn Spring Boot &amp; Java application development. Inspired by [Amigoscode: "Getting started with Spring Boot"](https://youtu.be/Ke7Tr4RgRTs) & others sources.
@@ -9,7 +9,7 @@ Little project of a simplified Student Management System to learn Spring Boot &a
 
 To use 'Spring Boot + Java: StudentApp', follow the steps showed on the inspiration video linked above. An active webpage with a live front-end to the project running on Heroku can be accessed here: https://studentapp-page.herokuapp.com
 
-To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Java 8 installed. The front-end uses Bootstrap v4.3.1 (not running locally) to simplify the web-development.
+To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Java 8 installed. The front-end uses [Bootstrap](https://getbootstrap.com/docs/4.3/components/) v4.3.1 (not running locally) to simplify the web-development.
 
 ## Contact 
 

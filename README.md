@@ -11,6 +11,12 @@ To use 'Spring Boot + Java: StudentApp', follow the steps showed on the inspirat
 
 To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Java 8 installed. The front-end uses [Bootstrap](https://getbootstrap.com/docs/4.3/components/) v4.3.1 (not running locally) to simplify the web-development.
 
+## Important files
+
+|Description | File | Notes|
+|:------------|:-----:|:-----|
+|Depency organizer POM | [POM.xml](/pom.xml) |Necessary|
+
 ## Contact 
 
 If you want to contact me you can reach me at [@higuetari](https://twitter.com/higuetari).

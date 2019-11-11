@@ -16,6 +16,11 @@ To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Ja
 |Description | File | Notes|
 |:------------|:-----:|:-----|
 |Depency organizer POM | [POM.xml](/pom.xml) |Necessary|
+|Main | [Main.java](/src/main.com.project.studentApp/Main.java) | Main class calling 'SpringBootApplication' |
+|Controller | [StudentController](/src/main.com.project.studentApp/controller) | Controller class|
+|Service | [StudentService](/src/main.com.project.studentApp/service) | Service class |
+|Dao | [StudentDAO](/src/main.com.project.studentApp/dao) | DAO folder with 'FakeImplementation' and a 'DAOSource'|
+|Entity | [StudentEntities](/src/main.com.project.studentApp/entity) | Entity folder|
 
 ## Contact 
 

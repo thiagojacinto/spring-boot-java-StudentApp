@@ -3,6 +3,7 @@ package com.springproj.springBootProject.controller;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springproj.springBootProject.entity.Student;
 import com.springproj.springBootProject.service.StudentService;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/students")
 public class StudentController {

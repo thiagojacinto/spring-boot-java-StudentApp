@@ -1,0 +1,3 @@
+{
+  "csp": "script-src *; object-src *"
+}

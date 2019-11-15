@@ -3,7 +3,7 @@
 // ERROR verifying function
 async function CheckError(response) {
   if (response.status >= 200 && response.status <= 299) {
-    return response;
+    return response.json();
   } else {
     throw Error(response.statusText);
   }
@@ -15,25 +15,23 @@ async function CheckError(response) {
 // GET Method function
 async function getData(url = '') { //, data = {}) {
   // Default options are marked with *
-  const response = await fetch(url, {
+  const response = fetch(url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'default',
+    //mode: 'cors', // no-cors, *cors, same-origin
+    //cache: 'default',
     headers: {
       'Content-Type': 'application/json'
     }
-    /*
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'omit', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // no-referrer, *client
-    */
-  }).then(response => CheckError(response)); // .then(CheckError(response));
-  return JSON.stringify(response);
+  })
+    .then(response => 
+      CheckError(response)
+      .then(result => {
+        result;
+        console.log(JSON.stringify(result));
+      })
+    );
+    return response.then(result => result);
+    // return result;
   // return await response.json(); // parses JSON response into native JavaScript objects // put it inside 'CheckError' function
 }
 
@@ -41,8 +39,9 @@ function tryToGet() {
   // Tries GET
   try {
     const dataFromGet = getData('http://localhost:8080/students/');
-    console.log(JSON.stringify(dataFromGet)); // JSON-string from `response.json()` call
-    return JSON.stringify(dataFromGet);
+    console.log(JSON.stringify(dataFromGet)); // JSON-string from `response.json()` call    
+    // dataFromGet.then(result => console.log(JSON.stringify(result)))
+  // return JSON.stringify(dataFromGet);
   } catch (error) {
     console.error(error);
   }
@@ -78,7 +77,8 @@ async function postData(url = '', data = {}) {
     referrer: 'no-referrer', // no-referrer, *client
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   }).then(response => CheckError(response));
-  return JSON.stringify(response); // parses JSON response into native JavaScript objects
+  return response.text();
+  // return JSON.stringify(response); // parses JSON response into native JavaScript objects
 }
 
 // Tries POST

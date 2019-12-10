@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.springproj.springBootProject.entity.Student;
 
-@SuppressWarnings("serial")
+
 @Repository
 public class FakeStudentDaoImp implements StudentDao {
 
@@ -16,12 +16,19 @@ public class FakeStudentDaoImp implements StudentDao {
 	
 	static {
 		
-		studentsMap = new HashMap<Integer, Student>(){
-			
+		studentsMap = new HashMap<Integer, Student>(){	
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 2269583430129703870L;
+
 			{
 				put(1,  new Student(1, "Thiago", "Engineering"));
-				put(2,  new Student(2, "Victor", "Business"));
-				put(3,  new Student(3, "Elisabete", "Finance"));
+				put(2,  new Student(2, "V.", "Business"));
+				put(3,  new Student(3, "E.", "Finance"));
+				put(4,  new Student(4, "F.", "Software Analyst"));
+				put(5,  new Student(5, "G.", "Startup Entrepreneur"));
+				put(6,  new Student(6, "H.", "Musician"));
 			}
 		};
 	}

@@ -13,6 +13,8 @@ To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Ja
 
 ## Important files
 
+Back-end:
+
 |Description | File | Notes|
 |:------------|:-----:|:-----|
 |Depency organizer POM | [POM.xml](/pom.xml) |Necessary|
@@ -21,6 +23,13 @@ To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Ja
 |Service | [StudentService](/src/main.com.project.studentApp/service) | Service class |
 |Dao | [StudentDAO](/src/main.com.project.studentApp/dao) | DAO folder with 'FakeImplementation' and a 'DAOSource'|
 |Entity | [StudentEntities](/src/main.com.project.studentApp/entity) | Entity folder|
+
+Front-end:
+
+|Description | File | Notes|
+|:------------|:-----:|:-----|
+|Javascript | [script.js](/web/script.js) | Necessary: core of integration between front-end and back-end software|
+|HTML main page | [index.hmtl](/web/index.html) | Webpage displaying information to user & giving interation opportunity to this user. |
 
 ## Contact 
 

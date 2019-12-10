@@ -1,24 +1,28 @@
 // Connection with server app based on Java + Spring Boot
 
+// * * * * * ERROR HANDLING
+
 // ERROR verifying function
 async function CheckError(response) {
   if (response.status >= 200 && response.status <= 299) {
     return response.json();
   } else {
+		gotWrong();
     throw Error(response.statusText);
   }
 }
+// Print if error function
+function gotWrong() {
+	window.alert('Something went wrong. Verify and try again.');
+}
 
-// Common HEADERS
-// const header = new Headers();
+// * * * * * * LIST ALL - GET BUTTON 
 
 // GET Method function
-async function getData(url = '') { //, data = {}) {
+async function getData(url = '', callback) { //, data = {}) {
   // Default options are marked with *
   const response = fetch(url, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    //mode: 'cors', // no-cors, *cors, same-origin
-    //cache: 'default',
+    method: 'GET', 
     headers: {
       'Content-Type': 'application/json'
     }
@@ -26,66 +30,135 @@ async function getData(url = '') { //, data = {}) {
     .then(response => 
       CheckError(response)
       .then(result => {
-        result;
         console.log(JSON.stringify(result));
+        callback && callback(result);
+        return result;
       })
     );
-    return response.then(result => result);
-    // return result;
-  // return await response.json(); // parses JSON response into native JavaScript objects // put it inside 'CheckError' function
 }
 
-function tryToGet() {
+function tryToGet(url, callback) {
   // Tries GET
   try {
-    const dataFromGet = getData('http://localhost:8080/students/');
-    console.log(JSON.stringify(dataFromGet)); // JSON-string from `response.json()` call    
-    // dataFromGet.then(result => console.log(JSON.stringify(result)))
-  // return JSON.stringify(dataFromGet);
+		const dataFromGet = getData(url, callback);
+		// console.log(JSON.stringify(dataFromGet)); // JSON-string from `response.json()` call    
+		return dataFromGet;
+		
   } catch (error) {
-    console.error(error);
+		console.error(error);
   }
 }
 
+// Populate with GET ALL response:
+function populateWithGetAll(found) {
+
+  // Get div to put the response
+	var inputDiv = document.querySelector('.getAllResponse');
+	// clear div's content
+	inputDiv.textContent = '';
+  // Creates a title and its text content
+  var infoTitle = document.createElement("H6");
+  var information = document.createTextNode("Students found:");
+  // adds to the selected div:
+  infoTitle.appendChild(information);
+  inputDiv.appendChild(infoTitle);
+
+  // Loop through found array:
+  for (let i=0; i < found.length; i++) {
+    // Create a HTML element to hold the info
+    var element = document.createElement("P");
+    // get info from the input array
+    var elementContent = document.createTextNode(`${found[i].name} studies ${found[i].course}`);
+    element.appendChild(elementContent);
+
+    let accentuation = document.createTextNode(';');
+    // Verify if its last element
+    if (i == found.length - 1) {
+      accentuation = document.createTextNode('.');
+    } 
+    element.appendChild(accentuation);
+    inputDiv.appendChild(element);
+  }
+
+}
+// First get button listener
 const getButton = document.querySelector('.get1-button');
 getButton.addEventListener('click', e => {
   // console.log(e);  // Verify event
   e.preventDefault();
-  tryToGet();
+  tryToGet('http://localhost:8080/students/', populateWithGetAll);
+});
+
+// - - - - - SECOND GET BUTTON HANDLING
+
+function populateWithID(object) {
+	// verify if object is NOT empty
+	if (object.length != 0) {
+
+		// Get div to put the response
+		var inputDiv = document.querySelector('.getIDResponse');
+		// clear div's content
+		inputDiv.textContent = '';
+		// Creates a title and its text content
+		var infoTitle = document.createElement("H6");
+		var information = document.createTextNode("Student found:");
+		// adds to the selected div:
+		infoTitle.appendChild(information);
+		inputDiv.appendChild(infoTitle);
+
+		// Create a HTML element to hold the info
+		var element = document.createElement("P");
+		// get info from the input array
+		var elementContent = document.createTextNode(`This is student is ${object.name}, that studies ${object.course}.`);
+		element.appendChild(elementContent);
+		inputDiv.appendChild(element);
+
+	} else {
+		gotWrong();
+	}
+}
+
+// Secondo get button listener
+const get2ndButton = document.querySelector('.get2-button');
+get2ndButton.addEventListener('click', e => {
+  e.preventDefault();
+	var getInputID = document.querySelector('#findFormArea').value;
+	// Prevent void input, by forcing get first
+	getInputID === '' ? gotWrong() : '' ;
+  tryToGet('http://localhost:8080/students/' + getInputID, populateWithID);
 });
 
 // ***************** POST *****************
-// Important 
+// URL:
 const methodUrl = 'http://localhost:8080/students/';
-// const methodArgs = document.querySelector('.post-text').value;
-
-
 
 // POST Method function
-async function postData(url = '', data = {}) {
+async function postData(url = '', data) {
   // Default options are marked with *
-  const response = await fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'omit', // include, *same-origin, omit
+  let postAction = fetch(url, {
+    method: 'POST', 
     headers: {
       'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
     },
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // no-referrer, *client
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
-  }).then(response => CheckError(response));
-  return response.text();
-  // return JSON.stringify(response); // parses JSON response into native JavaScript objects
+    body: data // body data type must match "Content-Type" header
+	}).then(response => {
+		CheckError(response);
+		// confirmsPost();
+		response;
+	});
+}
+
+// Confirms post function
+function confirmsPost() {
+	alert('Student added.');
 }
 
 // Tries POST
-function tryToPost(methodArgs) {
+function tryToPost(inputData) {
   try {
-    const dataFromPost = postData(methodUrl, JSON.parse(methodArgs));
-    console.log(JSON.stringify(dataFromPost)); // JSON-string from `response.json()` call
+    let postResponse = postData(methodUrl, inputData);//JSON.parse(inputData));
+    // console.log(postResponse);	// Verify
+		
   } catch(error) {
     console.error(error);
   }
@@ -93,9 +166,9 @@ function tryToPost(methodArgs) {
 
 const postButton = document.querySelector('.post-button');
 postButton.addEventListener('click', e => {
-  e.preventDefault();   // Block auto-refres
-  const methodArgs = document.querySelector('.post-text').value;
-  tryToPost(methodArgs);
+  e.preventDefault();   // Block auto-refresh
+  const insertData = document.querySelector('.postInput').value;
+  tryToPost(insertData);
 });
 
 // ***************** DELETE *****************

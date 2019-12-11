@@ -92,13 +92,14 @@ getButton.addEventListener('click', e => {
 // - - - - - SECOND GET BUTTON HANDLING
 
 function populateWithID(object) {
-	// verify if object is NOT empty
+	
+  // Get div to put the response
+  var inputDiv = document.querySelector('.getIDResponse');
+  // clear div's content
+  inputDiv.textContent = '';
+    
+  // verify if object is NOT empty
 	if (object.length != 0) {
-
-		// Get div to put the response
-		var inputDiv = document.querySelector('.getIDResponse');
-		// clear div's content
-		inputDiv.textContent = '';
 		// Creates a title and its text content
 		var infoTitle = document.createElement("H6");
 		var information = document.createTextNode("Student found:");
@@ -133,7 +134,7 @@ get2ndButton.addEventListener('click', e => {
 const methodUrl = 'http://localhost:8080/students/';
 
 // POST Method function
-async function postData(url = '', data) {
+async function postData(url = '', data, callback) {
   // Default options are marked with *
   let postAction = fetch(url, {
     method: 'POST', 
@@ -142,10 +143,11 @@ async function postData(url = '', data) {
     },
     body: data // body data type must match "Content-Type" header
 	}).then(response => {
-		CheckError(response);
-		// confirmsPost();
-		response;
-	});
+		CheckError(response).then(res => {
+      console.log(res);
+      callback && callback();
+    })
+	}).catch(err => console.log(`Error encountered: ${err}.`));
 }
 
 // Confirms post function
@@ -156,7 +158,7 @@ function confirmsPost() {
 // Tries POST
 function tryToPost(inputData) {
   try {
-    let postResponse = postData(methodUrl, inputData);//JSON.parse(inputData));
+    let postResponse = postData(methodUrl, inputData, confirmsPost());//JSON.parse(inputData));
     // console.log(postResponse);	// Verify
 		
   } catch(error) {
@@ -171,23 +173,82 @@ postButton.addEventListener('click', e => {
   tryToPost(insertData);
 });
 
+// ***************** PUT ********************
+// PUT Method function
+async function putData(url = '', data, callback) {
+  
+  let putAction = fetch(url, {
+    method: 'PUT', 
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: data // body data type must match "Content-Type" header
+	}).then(response => {
+		CheckError(response).then(res => {
+      console.log(res);
+      callback && callback();
+    })
+	}).catch(err => console.log(`Error encountered: ${err}.`));
+}
+
+// Confirms post function
+function confirmsUpdate() {
+	alert('Student\'s updated.');
+}
+
+// Tries PUT
+function tryToPut(inputData) {
+  try {
+    let putResponse = putData(methodUrl, inputData, confirmsUpdate());
+  } catch(error) {
+    console.error(error);
+  }
+}
+
+const putButton = document.querySelector('.put-button');
+putButton.addEventListener('click', e => {
+  e.preventDefault();   // Block auto-refresh
+  const insertData = document.querySelector('#putInput').value;
+  tryToPut(insertData);
+});
+
 // ***************** DELETE *****************
 
 // DELETE Method function
-async function deleteData(url = '') { //, data = {}) {
-  // Default options are marked with *
+async function deleteData(url, callback) { //, data = {}) {
+  
   const response = await fetch(url, {
-    method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
+    method: 'DELETE', 
     headers: {
       'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrer: 'no-referrer', // no-referrer, *client
-    body: '' //JSON.stringify(data) // body data type must match "Content-Type" header
-  }).then(CheckError);
-  return await response.json(); // parses JSON response into native JavaScript objects
+    }
+  }).then(response => 
+    CheckError(response)
+    .then(result => {
+      console.log(JSON.stringify(result));
+      callback && callback(result);
+      return result;
+    })
+  );
 }
+function confirmsRemove() {
+  alert('Item removed from the system.')
+}
+function tryToRemove(url, callback) {
+  try {
+    let removeResponse = deleteData(url, callback);
+  } catch(error) {
+    console.error(error);
+  }
+}
+
+// DELETE Listener
+const deleteButton = document.querySelector('.delete-button');
+deleteButton.addEventListener('click', e => {
+  e.preventDefault();
+	var deleteItemByID = document.querySelector('#removeFormArea').value;
+	// Prevent void input, by forcing get first
+  deleteItemByID === '' ? gotWrong() : '' ;
+  var removeURL = methodUrl + deleteItemByID;
+  tryToRemove(removeURL, confirmsRemove);
+});

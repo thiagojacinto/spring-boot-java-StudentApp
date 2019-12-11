@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'safe-eval' 'safe-inline'; script-src: *; object-src *; style-src *; img-src *; media-src *; font-src *; connect-src *"> -->
-    <title>Student Integration</title>
+    <title>Student App</title>
     <!-- Bootstrap simple imported stylesheet -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -59,8 +58,6 @@
                     <div class="card-body">
                         <h5 class="card-title">List</h5>
                         <p class="card-text">Returns all students inserted in the system.</p>
-                        <!-- <a href="#" class="btn btn-primary">GET</a> -->
-                        <!-- <button class="btn btn-primary get1-button">GET</button> -->
                         <form method="GET">
                             <input class="btn btn-primary get1-button" type="submit" value="GET">
                         </form>
@@ -78,7 +75,6 @@
                             <label for="formArea1">Insert the desired Student ID here.</label>
                             <textarea class="form-control" id="findFormArea" rows="1"></textarea>
                         </div>
-                        <!-- <a href="#" class="btn btn-primary">GET</a> -->
                         <form action="" method="GET">
                             <input class="btn btn-primary get2-button" type="submit" value="FIND">
                         </form>
@@ -96,7 +92,6 @@
                                 <label for="formArea4">JSON required: create a new Student information to add.</label>
                                 <textarea class="form-control postInput" id="insertFormArea" rows="3"></textarea>
                             </div>
-                        <!-- <a href="#" class="btn btn-primary">POST</a> -->
                         <form action="" method="POST">
                             <input class="btn btn-primary post-button" type="submit" value="INSERT">
                         </form>
@@ -110,11 +105,10 @@
                         <p class="card-text">Updates information about some already inserted student.</p>
                         <div class="form-group">
                                 <label for="formArea3">JSON required: insert the desired Student ID and then the information you want to update.</label>
-                                <textarea class="form-control" id="formArea4" rows="3"></textarea>
+                                <textarea class="form-control" id="putInput" rows="3"></textarea>
                             </div>
-                        <!-- <a href="#" class="btn btn-primary">POST</a> -->
                         <form action="" method="PUT">
-                            <input class="btn btn-primary post-button" type="submit" value="UPDATE">
+                            <input class="btn btn-primary put-button" type="submit" value="UPDATE">
                         </form>
                     </div>
                 </div>
@@ -126,11 +120,11 @@
                         <p class="card-text">Removes from the system the student that matches the following ID.</p>
                         <div class="form-group">
                                 <label for="formArea2">Insert the desired Student ID to remove.</label>
-                                <textarea class="form-control" id="formArea5" rows="1"></textarea>
+                                <textarea class="form-control" id="removeFormArea" rows="1"></textarea>
                             </div>
                         <!-- <a href="#" class="btn btn-primary">REMOVE</a> -->
                         <form action="" method="DELETE">
-                            <input class="btn btn-primary post-button" type="submit" value="REMOVE">
+                            <input class="btn btn-primary delete-button" type="submit" value="REMOVE">
                         </form>
                     </div>
                 </div>
@@ -145,17 +139,9 @@
         </div>
     </footer>
 
-    <!-- Bootstrap simple imported scripts -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
+    <script src="bootstrap/jquery-3.3.1.slim.min.js"></script>
+    <script src="bootstrap/popper.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
     <!-- JS script to connect to backend -->
     <script src="script.js"></script>
 </body>

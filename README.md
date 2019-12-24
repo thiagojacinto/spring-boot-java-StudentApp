@@ -13,7 +13,7 @@ To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Ja
 
 ## Important files
 
-Back-end: deployed on Heroku container [StudentApp API](https://api-studentapp.herokuapp.com);
+Back-end: deployed on Heroku container [StudentApp API](https://api-studentapp.herokuapp.com/students/findall);
 
 |Description | File | Notes|
 |:------------|:-----:|:-----|

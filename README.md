@@ -3,7 +3,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/thiagojacinto/spring-boot-java-StudentApp)
 ![Twitter Follow](https://img.shields.io/twitter/follow/higuetari?style=social)
 
-Little project of a simplified Student Management System to learn Spring Boot &amp; Java application development. Inspired by [Amigoscode: "Getting started with Spring Boot"](https://youtu.be/Ke7Tr4RgRTs) & others sources.
+Little project of a simplified Student Management System to learn Spring Boot &amp; Java application development. Inspired by [Amigoscode: "Getting started with Spring Boot"](https://youtu.be/Ke7Tr4RgRTs) & many others sources.
 
 ## Using "StudentApp"
 
@@ -13,23 +13,22 @@ To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Ja
 
 ## Important files
 
-Back-end:
+Back-end: deployed on Heroku container [StudentApp API](https://api-studentapp.herokuapp.com);
 
 |Description | File | Notes|
 |:------------|:-----:|:-----|
-|Depency organizer POM | [POM.xml](/pom.xml) |Necessary|
-|Main | [Main.java](/src/main.com.project.studentApp/Main.java) | Main class calling 'SpringBootApplication' |
-|Controller | [StudentController](/src/main.com.project.studentApp/controller) | Controller class|
-|Service | [StudentService](/src/main.com.project.studentApp/service) | Service class |
-|Dao | [StudentDAO](/src/main.com.project.studentApp/dao) | DAO folder with 'FakeImplementation' and a 'DAOSource'|
-|Entity | [StudentEntities](/src/main.com.project.studentApp/entity) | Entity folder|
+|Depency organizer POM | [POM.xml](/pom.xml) | Maven configuration & dependency organizer|
+|Main | [APIRestApp.java](/src/main/java/com/springbootdb/apistudents/ApiRestApp.javaa) | Main class calling 'SpringBootApplication' |
+|Controller | [StudentController](/src/main/java/com/springbootdb/apistudents/controller/StudentController.java) | Controller class, connecting methods to JPA database functions.|
+|Dao | [StudentRepositoryDAO](/src/main/java/com/springbootdb/apistudents/dao/StudentRepositoryDao.java) | DAO file with simple extension of 'JpaRepository' interface |
+|Entity | [Student](/src/main/java/com/springbootdb/apistudents/model/Student.java) | Entity file |
 
-Front-end:
+Front-end: doployed on Heroku container [StudentApp Web](https://studentapp.herokuapp.com);
 
 |Description | File | Notes|
 |:------------|:-----:|:-----|
-|Javascript | [script.js](/web/script.js) | Necessary: core of integration between front-end and back-end software|
-|HTML main page | [index.hmtl](/web/index.html) | Webpage displaying information to user & giving interation opportunity to this user. |
+|Javascript | [script.js](/web/script.js) | Core of integration between front-end and back-end software|
+|HTML main page | [index.hmtl](/web/index.html) | Webpage displaying information from the server & giving interation opportunity to this user. |
 
 ## Contact 
 
@@ -41,4 +40,8 @@ This project uses the following license: [LICENSE](<link>).
 
 ## Acknowledgements
 
-Initial thanks to [AmigosCode](https://github.com/amigoscode) to propose this tutorial. 
+Initial thanks to [AmigosCode](https://github.com/amigoscode) to propose this tutorial;
+Oliver Trosien's [JPA + UUID](https://github.com/otrosien/uuid-jpa-rest-example);
+Michelli Brito's [API Rest](https://github.com/MichelliBrito/produtos-apirest)
+Grokonez's [JPA/Hibernate & PostgreSQL CRUD](https://grokonez.com/spring-framework/spring-boot/spring-jpa-hibernate-one-to-many-association-postgresql-springboot-crud-restapis-post-get-put-delete-example)
+

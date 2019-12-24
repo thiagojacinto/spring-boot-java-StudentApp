@@ -1,12 +1,14 @@
-package com.springproj.springBootProject;
+package com.springbootdb.apistudents;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Main {
-
+public class ApiRestApp {
+	
 	public static void main(String[] args) {
-		SpringApplication.run(Main.class, args);
+		
+		SpringApplication.run(ApiRestApp.class, args);
+		
 	}
 }

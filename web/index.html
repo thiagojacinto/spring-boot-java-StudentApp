@@ -73,7 +73,7 @@
                         <p class="card-text">Returns the student that matches the following ID.</p>
                         <div class="form-group">
                             <label for="formArea1">Insert the desired Student ID here.</label>
-                            <textarea class="form-control" id="findFormArea" rows="1"></textarea>
+                            <textarea class="form-control" id="findFormArea" rows="1" placeholder="Type the desired Student's UUID"></textarea>
                         </div>
                         <form action="" method="GET">
                             <input class="btn btn-primary get2-button" type="submit" value="FIND">
@@ -90,7 +90,7 @@
                         <p class="card-text">Insert a new student into the system.</p>
                         <div class="form-group">
                                 <label for="formArea4">JSON required: create a new Student information to add.</label>
-                                <textarea class="form-control postInput" id="insertFormArea" rows="3"></textarea>
+                                <textarea class="form-control postInput" id="insertFormArea" rows="3" placeholder="Example: {'name': 'Thiago', 'course': 'Software Development'}"></textarea>
                             </div>
                         <form action="" method="POST">
                             <input class="btn btn-primary post-button" type="submit" value="INSERT">
@@ -105,10 +105,10 @@
                         <p class="card-text">Updates information about some already inserted student.</p>
                         <div class="form-group">
                                 <label for="formArea3">Type the selected student's id (UUID) to procede the update:</label>
-                                <textarea class="form-control" id="idInput" rows="1"></textarea>
+                                <textarea class="form-control" id="idInput" rows="1" placeholder="Type the Student's UUID to update it."></textarea>
 
                                 <label for="formArea3">JSON required: insert the desired Student ID and then the information you want to update.</label>
-                                <textarea class="form-control" id="putInput" rows="3"></textarea>
+                                <textarea class="form-control" id="putInput" rows="3" placeholder="Example: {'name': 'Thiago', 'course': 'Software Development'}"></textarea>
                             </div>
                         <form action="" method="PUT">
                             <input class="btn btn-primary put-button" type="submit" value="UPDATE">
@@ -123,7 +123,7 @@
                         <p class="card-text">Removes from the system the student that matches the following ID.</p>
                         <div class="form-group">
                                 <label for="formArea2">Insert the desired Student ID to remove.</label>
-                                <textarea class="form-control" id="removeFormArea" rows="1"></textarea>
+                                <textarea class="form-control" id="removeFormArea" rows="1" placeholder="Type Student's UUID to remove from database."></textarea>
                             </div>
                         <!-- <a href="#" class="btn btn-primary">REMOVE</a> -->
                         <form action="" method="DELETE">

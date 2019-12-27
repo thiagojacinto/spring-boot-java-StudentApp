@@ -40,8 +40,8 @@ This project uses the following license: [LICENSE](<link>).
 
 ## Acknowledgements
 
-Initial thanks to [AmigosCode](https://github.com/amigoscode) to propose this tutorial;
-Oliver Trosien's [JPA + UUID](https://github.com/otrosien/uuid-jpa-rest-example);
-Michelli Brito's [API Rest](https://github.com/MichelliBrito/produtos-apirest);
-Grokonez's [JPA/Hibernate & PostgreSQL CRUD](https://grokonez.com/spring-framework/spring-boot/spring-jpa-hibernate-one-to-many-association-postgresql-springboot-crud-restapis-post-get-put-delete-example).
+- Initial thanks to [AmigosCode](https://github.com/amigoscode) to propose this tutorial;
+- Oliver Trosien's [JPA + UUID](https://github.com/otrosien/uuid-jpa-rest-example);
+- Michelli Brito's [API Rest](https://github.com/MichelliBrito/produtos-apirest);
+- Grokonez's [JPA/Hibernate & PostgreSQL CRUD](https://grokonez.com/spring-framework/spring-boot/spring-jpa-hibernate-one-to-many-association-postgresql-springboot-crud-restapis-post-get-put-delete-example).
 

@@ -27,8 +27,8 @@ Front-end: doployed on Heroku container [StudentApp Web](https://studentapp.hero
 
 |Description | File | Notes|
 |:------------|:-----:|:-----|
-|Javascript | [script.js](/web/script.js) | Core of integration between front-end and back-end software|
-|HTML main page | [index.hmtl](/web/index.html) | Webpage displaying information from the server & giving interation opportunity to this user. |
+|Javascript | [script.js](/web/script.js) | Core of integration between front-end and back-end software, handles information gathered from StudentApp API (JSON).|
+|HTML main page | [index.html](/web/index.html) | Webpage displaying information from the server & giving interation opportunity to this user. Bootstrap v4 used to apply some style|
 
 ## Contact 
 

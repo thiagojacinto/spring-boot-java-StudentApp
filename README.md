@@ -9,7 +9,7 @@ Little project of a simplified Student Management System to learn Spring Boot &a
 
 To use 'Spring Boot + Java: StudentApp', follow the steps showed on the inspiration video linked above. An active webpage with a live front-end to the project running on Heroku can be accessed here: https://studentapp-page.herokuapp.com
 
-To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Java 8 installed. The front-end uses [Bootstrap](https://getbootstrap.com/docs/4.3/components/) v4.3.1 (not running locally) to simplify the web-development.
+To run you will need a Java IDE (Eclipse recommended) and Maven, Spring Boot, Java 8 installed. The front-end uses [Bootstrap](https://getbootstrap.com/docs/4.3/components/) v4.3.1 (not running locally) to simplify the web-development. After version `1.3.beta`, "StudentApp API" uses PostgreSQL as database to store and retrieve data. Builded at Heroku, Postgres Plugin (add-on) was used.
 
 ## Important files
 
@@ -22,6 +22,7 @@ Back-end: deployed on Heroku container [StudentApp API](https://api-studentapp.h
 |Controller | [StudentController](/src/main/java/com/springbootdb/apistudents/controller/StudentController.java) | Controller class, connecting methods to JPA database functions.|
 |Dao | [StudentRepositoryDAO](/src/main/java/com/springbootdb/apistudents/dao/StudentRepositoryDao.java) | DAO file with simple extension of 'JpaRepository' interface |
 |Entity | [Student](/src/main/java/com/springbootdb/apistudents/model/Student.java) | Entity file |
+|App Properties | [application.properties](/src/main/resources/application.properties) | Configuration to access PostgreSQL database|
 
 Front-end: doployed on Heroku container [StudentApp Web](https://studentapp.herokuapp.com);
 

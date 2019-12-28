@@ -1,4 +1,18 @@
-// Connection with server app based on Java + Spring Boot
+/*
+ Connection with server app based on Java + Spring Boot
+
+ Author:  Thiago Jacinto @ 2019
+ Version: beta.1.3
+ Github:  https://github.com/thiagojacinto/spring-boot-java-StudentApp
+
+ */
+
+// URL:
+// 1 - When localhosting:
+// const universalURL = 'http://localhost:8080/students/';
+
+// 2 - Deployed on Heroku app: 
+const universalURL = 'https://api-studentapp.herokuapp.com/students/';
 
 // * * * * * ERROR HANDLING
 
@@ -13,7 +27,7 @@ async function CheckError(response) {
 }
 // Print if error function
 function gotWrong() {
-	window.alert('Something went wrong. Verify and try again.');
+	alert('Something went wrong. Verify and try again.');
 }
 
 // * * * * * * LIST ALL - GET BUTTON 
@@ -68,7 +82,7 @@ function populateWithGetAll(found) {
     // Create a HTML element to hold the info
     var element = document.createElement("P");
     // get info from the input array
-    var elementContent = document.createTextNode(`${found[i].name} studies ${found[i].course}`);
+    var elementContent = document.createTextNode(`${found[i].name} studies ${found[i].course}. ID = ${found[i].id}`);
     element.appendChild(elementContent);
 
     let accentuation = document.createTextNode(';');
@@ -86,10 +100,11 @@ const getButton = document.querySelector('.get1-button');
 getButton.addEventListener('click', e => {
   // console.log(e);  // Verify event
   e.preventDefault();
-  tryToGet('http://localhost:8080/students/', populateWithGetAll);
+  let finalUrl = universalURL + 'findall';
+  tryToGet(finalUrl, populateWithGetAll);
 });
 
-// - - - - - SECOND GET BUTTON HANDLING
+// - - - - - SECOND GET BUTTON HANDLING, FINDBYID
 
 function populateWithID(object) {
 	
@@ -99,7 +114,7 @@ function populateWithID(object) {
   inputDiv.textContent = '';
     
   // verify if object is NOT empty
-	if (object.length != 0) {
+	if (object != null && object.length != 0) {
 		// Creates a title and its text content
 		var infoTitle = document.createElement("H6");
 		var information = document.createTextNode("Student found:");
@@ -125,15 +140,15 @@ get2ndButton.addEventListener('click', e => {
   e.preventDefault();
 	var getInputID = document.querySelector('#findFormArea').value;
 	// Prevent void input, by forcing get first
-	getInputID === '' ? gotWrong() : '' ;
-  tryToGet('http://localhost:8080/students/' + getInputID, populateWithID);
+  getInputID === '' ? gotWrong() : '' ;
+  
+  let finalUrl = universalURL + 'findbyid/' + getInputID;
+  tryToGet(finalUrl, populateWithID);
 });
 
 // ***************** POST *****************
-// URL:
-const methodUrl = 'http://localhost:8080/students/';
 
-// POST Method function
+// POST Method function = INSERT or /new
 async function postData(url = '', data, callback) {
   // Default options are marked with *
   let postAction = fetch(url, {
@@ -158,7 +173,8 @@ function confirmsPost() {
 // Tries POST
 function tryToPost(inputData) {
   try {
-    let postResponse = postData(methodUrl, inputData, confirmsPost());//JSON.parse(inputData));
+    let finalUrl = universalURL + 'new';
+    let postResponse = postData(finalUrl, inputData, confirmsPost());//JSON.parse(inputData));
     // console.log(postResponse);	// Verify
 		
   } catch(error) {
@@ -174,9 +190,8 @@ postButton.addEventListener('click', e => {
 });
 
 // ***************** PUT ********************
-// PUT Method function
+// PUT Method function = UPDATE
 async function putData(url = '', data, callback) {
-  
   let putAction = fetch(url, {
     method: 'PUT', 
     headers: {
@@ -197,9 +212,10 @@ function confirmsUpdate() {
 }
 
 // Tries PUT
-function tryToPut(inputData) {
+function tryToPut(inputData, seletecId) {
   try {
-    let putResponse = putData(methodUrl, inputData, confirmsUpdate());
+    let finalUrl = universalURL + "update/" + seletecId;
+    let putResponse = putData(finalUrl, inputData, confirmsUpdate());
   } catch(error) {
     console.error(error);
   }
@@ -209,7 +225,8 @@ const putButton = document.querySelector('.put-button');
 putButton.addEventListener('click', e => {
   e.preventDefault();   // Block auto-refresh
   const insertData = document.querySelector('#putInput').value;
-  tryToPut(insertData);
+  const idData = document.querySelector('#idInput').value;
+  tryToPut(insertData, idData);
 });
 
 // ***************** DELETE *****************
@@ -249,6 +266,6 @@ deleteButton.addEventListener('click', e => {
 	var deleteItemByID = document.querySelector('#removeFormArea').value;
 	// Prevent void input, by forcing get first
   deleteItemByID === '' ? gotWrong() : '' ;
-  var removeURL = methodUrl + deleteItemByID;
+  var removeURL = universalURL + 'remove/' +  deleteItemByID;
   tryToRemove(removeURL, confirmsRemove);
 });
